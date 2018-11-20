@@ -9,5 +9,6 @@ function e=err(dt,ti,tf,val1,val2)
 f=0;
 for i=1:max(size(val1))
     f=f+(val1(i)-val2(i))*(val1(i)-val2(i));
+    %sqrt(f)
 end
-e=sqrt(dt/tf*f);
+e=sqrt((dt/tf)*f);
