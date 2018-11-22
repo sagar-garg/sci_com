@@ -10,42 +10,53 @@ function []=pl_ap(y0,ti,tf,dt,m,i)
 %  'm' takes value from 1 to 4 where 1 = Plot for Explicit Euler, 2 = Plot
 %  for Heun's Method, 3 = Plot for Runge Kutta Method and 4 = Plot for all
 %  three methods with analytical solution on same figure..
-t=ti:dt:tf;
-anay=ana(ti,tf,dt);
+    t=ti:dt(max(size(dt))):tf;
+    anay=ana(ti,tf,dt(max(size(dt))));
 if m==1
     figure(i);
-    plot(t,ex_eu(y0,ti,tf,dt),t,anay)
-    xlim([ti-2*dt,tf+2*dt]);
-    ylim([0,anay(max(size(anay)))+1]);
-    title(['Explicit Euler for dt= ', num2str(dt)]);
+    hold on
+    plot(t,anay);
+    title('Explicit Euler');
     xlabel([num2str(ti) ,' < t < ', num2str(tf)]) 
     ylabel('p') 
-    legend({'y = Explicit Euler','y = Analytical'},'Location','southeast')
+    xlim([ti-2*dt(max(size(dt))),tf+2*dt(max(size(dt)))]);
+    ylim([0,anay(max(size(anay)))+1]);
+    for j=1:max(size(dt))
+    t=ti:dt(j):tf;
+    plot(t,ex_eu(y0,ti,tf,dt(j)),'-o')
+    end
+    legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
+    hold off
 elseif m==2
     figure(i);
-    plot(t,heun(y0,ti,tf,dt),t,anay)
-    xlim([ti-2*dt,tf+2*dt]);
-    ylim([0,anay(max(size(anay)))+1]);
-    title(['Heun for dt= ', num2str(dt)]);
+    hold on
+    plot(t,anay);
+    title('Heun Method');
     xlabel([num2str(ti) ,' < t < ', num2str(tf)]) 
     ylabel('p') 
-    legend({'y = Heun','y = Analytical'},'Location','southeast')
+    xlim([ti-2*dt(max(size(dt))),tf+2*dt(max(size(dt)))]);
+    ylim([0,anay(max(size(anay)))+1]);
+    for j=1:max(size(dt))
+    t=ti:dt(j):tf;
+    plot(t,heun(y0,ti,tf,dt(j)),'-s')
+    end
+    legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
+    hold off
 elseif m==3
     figure(i);
-    plot(t,r_k(y0,ti,tf,dt),t,anay)
-    xlim([ti-2*dt,tf+2*dt]);
-    ylim([0,anay(max(size(anay)))+1]);
-    title(['Runge Kutta-4 for dt= ', num2str(dt)]);
+    hold on
+    plot(t,anay);
+    title('Runge Kutta-4 Method');
     xlabel([num2str(ti) ,' < t < ', num2str(tf)]) 
     ylabel('p') 
-    legend({'y = Runge Kutta','y = Analytical'},'Location','southeast')
+    xlim([ti-2*dt(max(size(dt))),tf+2*dt(max(size(dt)))]);
+    ylim([0,anay(max(size(anay)))+1]);
+    for j=1:max(size(dt))
+    t=ti:dt(j):tf;
+    plot(t,r_k(y0,ti,tf,dt(j)),'-*')
+    end
+    legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
+    hold off
 else
-    figure(i);
-    plot(t,ex_eu(y0,ti,tf,dt),t,heun(y0,ti,tf,dt),t,r_k(y0,ti,tf,dt),t,anay)
-    xlim([ti-2*dt,tf+2*dt]);
-    ylim([0,anay(max(size(anay)))+1]);
-    title(['All Method for dt= ', num2str(dt)]);
-    xlabel([num2str(ti) ,' < t < ', num2str(tf)]) 
-    ylabel('p') 
-    legend({'y = Explicit Euler','y = Heun','y = Runge Kutta','y = Analytical'},'Location','southeast')
+    disp('Please specify a method')
 end
