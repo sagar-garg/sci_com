@@ -42,5 +42,6 @@ for i=1:max(size(dt))
     eb2(i)=err(dt(i),dt(max(size(dt))),ti,tf,heun(y0,ti,tf,dt(i)),heun(y0,ti,tf,dt(max(size(dt)))));
     eb3(i)=err(dt(i),dt(max(size(dt))),ti,tf,r_k(y0,ti,tf,dt(i)),r_k(y0,ti,tf,dt(max(size(dt)))));
 end
+clear j;
 clear i;
 clear k;

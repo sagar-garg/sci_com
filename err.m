@@ -26,7 +26,9 @@ for i=1:max(size(t))
     %j
     %val1(i)
     %val2(j)
-    f=f+(val1(i)-val2(j))*(val1(i)-val2(j));
+    if tb(j)==t(i)
+        f=f+(val1(i)-val2(j))*(val1(i)-val2(j));
+    end
     %sqrt(f)
 end
 e=sqrt((dt/tf)*f);
