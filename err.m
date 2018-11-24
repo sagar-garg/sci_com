@@ -11,24 +11,12 @@ f=0;
 t=ti:dt:tf;
 tb=ti:dtb:tf;
 j=1;
-%val1
-%val2
 for i=1:max(size(t))
-    %i
-    %j
-    %tj=tb(j)
-   % ti=t(i)
     while (tb(j)~=t(i)||tb(j)<t(i))  %% This loop is to match time of function evaluation, i.e, it syncronises pk(t)-pk,best(t)
         j=j+1;
-        %tj=tb(j)
     end
-    %i
-    %j
-    %val1(i)
-    %val2(j)
     if tb(j)==t(i)
         f=f+(val1(i)-val2(j))*(val1(i)-val2(j));
     end
-    %sqrt(f)
 end
 e=sqrt((dt/tf)*f);

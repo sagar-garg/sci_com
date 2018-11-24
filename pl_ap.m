@@ -23,7 +23,7 @@ if m==1
     ylim([0,anay(max(size(anay)))+1]);
     for j=1:max(size(dt))
     t=ti:dt(j):tf;
-    plot(t,ex_eu(y0,ti,tf,dt(j)),'-o')
+    plot(t,ex_eu(y0,ti,tf,dt(j)),'o--')
     end
     legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
     hold off
@@ -38,7 +38,7 @@ elseif m==2
     ylim([0,anay(max(size(anay)))+1]);
     for j=1:max(size(dt))
     t=ti:dt(j):tf;
-    plot(t,heun(y0,ti,tf,dt(j)),'-s')
+    plot(t,heun(y0,ti,tf,dt(j)),'--s')
     end
     legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
     hold off
@@ -53,7 +53,7 @@ elseif m==3
     ylim([0,anay(max(size(anay)))+1]);
     for j=1:max(size(dt))
     t=ti:dt(j):tf;
-    plot(t,r_k(y0,ti,tf,dt(j)),'-*')
+    plot(t,r_k(y0,ti,tf,dt(j)),'--*')
     end
     legend({'y = Analytical',['dt = ',num2str(dt(1))],['dt = ',num2str(dt(2))],['dt = ',num2str(dt(3))],['dt = ',num2str(dt(4))]},'Location','southeast')
     hold off
