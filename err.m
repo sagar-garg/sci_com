@@ -11,7 +11,7 @@ f=0;
 t=ti:dt:tf;
 tb=ti:dtb:tf;
 j=1;
-for i=1:max(size(t))
+for i=1:max(size(t)) %%at i=1, j=1 both t and tb are 0. no loss, but no need of this step.
     while (tb(j)~=t(i)||tb(j)<t(i))  %% This loop is to match time of function evaluation, i.e, it syncronises pk(t)-pk,best(t)
         j=j+1;
     end
